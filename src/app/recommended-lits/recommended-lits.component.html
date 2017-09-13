@@ -1,0 +1,28 @@
+<div class="panel-group" id="accordion">
+
+
+  <div *ngFor="let article of service.articles" (click)="select(article.id)" class="panel panel-info" [ngClass]="{'panel-warning':article.id===selectedId}">
+    
+    <a data-toggle="collapse" data-parent="#accordion" href="#{{article.id}}">
+      <div class="panel-heading">
+        <h3 class="panel-title" >
+          {{article.title}}
+          <div style="float:right">{{article.author}}</div>
+        </h3>
+        <span *ngFor="let keyword of article.keywords" class="label label-info" style="margin:1px">
+          {{keyword}}
+        </span>
+      </div>
+    </a>
+
+    <div [id]="article.id" class="panel-collapse collapse "> 
+      <div class="panel-body">
+      <comments *ngIf="selectedId" [id]="article.id"></comments> 
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
