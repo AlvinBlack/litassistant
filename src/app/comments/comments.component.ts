@@ -6,15 +6,17 @@ import { Comment,MockComments } from "../mockdata"
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnChanges {
+export class CommentsComponent implements OnInit{
   @Input()
-  id:number;
-  private comments:Comment[];
+  id:number[];
+  private comments = [];
   constructor(private service: DataService) { }
-
-  ngOnChanges(changes) {
-  this.comments = this.service.getCommentsById(this.id)
-  console.log(this.comments)
+  ngOnInit(){
+    var i = 0;
+    for (i; i < this.id.length; i++){
+      this.comments.push(this.service.comments[this.id[i]-1])
+    }
+    console.log(this.id)
   }
   test(e){
 

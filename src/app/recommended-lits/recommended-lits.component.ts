@@ -7,14 +7,10 @@ import { DataService } from '../data.service'
   templateUrl: './recommended-lits.component.html',
   styleUrls: ['./recommended-lits.component.scss']
 })
-export class RecommendedLitsComponent implements OnInit {
-  private selectedId = 0;
+export class RecommendedLitsComponent implements OnInit{
   
   constructor(private service: DataService) { }
-
-  ngOnInit() {
-  }
-  select(num){
-    this.selectedId = num;
+  ngOnInit(){
+    console.log(this.service.articles)
   }
 }

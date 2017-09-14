@@ -4,18 +4,19 @@ import { Article,Comment,MockArticles,MockComments } from './mockdata';
 
 @Injectable()
 export class DataService {
-  private articles;
-  private comments;
+  articles;
+  comments;
 
   constructor() {
     this.init();
     }
-  private init(){
+  init(){
           this.getArticles();
           this.getComments(); 
           } 
   getArticles(){
     this.articles = MockArticles;
+    console.log(this.articles)
   }
   getComments(){
     this.comments = MockComments;

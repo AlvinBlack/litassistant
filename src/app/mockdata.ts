@@ -12,58 +12,46 @@ export class Comment{
     articleId:number;
     content:string[];
 }
-export const MockArticles:Article[]=[
-    {
-        id:1,
-        title:"title1",
-        link:"link1",
-        author:"author1",
-        keywords:["keyword11","keyword12","keyword13","keyword14","keyword15"],
-        childIds:[1,2]
-    },
-    {
-        id:2,
-        title:"title2",
-        link:"link2",
-        author:"author2",
-        keywords:["keyword21","keyword22","keyword23","keyword24","keyword25"],
-        childIds:[3,4]
-    },
-    {
-        id:3,
-        title:"title3",
-        link:"link2",
-        author:"author2",
-        keywords:["keyword21","keyword22","keyword23","keyword24","keyword25"],
-        childIds:[3,4]
-    }
-   
-]
 
-export const MockComments:Comment[] = [
-    {
-        id:1,
-        articleId:1,
-        visiable: 1,
-        content:["comment1","comment2","comment3","comment4","comment5"]
-    },
-    {
-        id:2,
-        articleId:1,
-        visiable: 1,
-        content:["comment6","comment7","comment8","comment9","comment10"]
-    },
-    {
-        id:3,
-        articleId:2,
-        visiable: 1,
-        content:["comment11","comment12","comment13","comment14","comment15"]
-    },
-    {
-        id:4,
-        articleId:2,
-        visiable: 1,
-        content:["comment16","comment17","comment18","comment19","comment20"]
+export const MockArticles = (function(){
+    var i  = 0;
+    var arr = [];
+    for(i; i < 10; i++){
+        arr[i] = {};
+        arr[i].id = i+1;
+        arr[i].title = `title${i+1}`;
+        arr[i].author = `author${i+1}`;
+        arr[i].keywords = (function(){
+            var j = 0;
+            var keys = [];
+            for(j; j < 5; j++){
+                keys[j] = `article${i+1} keyword${j+1}`
+            }
+            return keys;
+        })();
+        arr[i].childIds =[2*i+1,2*i+2 ]
     }
-]
+    return arr;
+})()
 
+export const MockComments= (function(){
+    var i = 0;
+    var arr = [];
+    for(i; i < 20; i++){
+        arr[i] = {};
+        arr[i].id = i+1
+        arr[i].articleId = Math.ceil((i+1)/2);
+        arr[i].visible = true;
+        arr[i].content = (function(){
+            var j = 0;
+            var comments = [];
+            for(j; j < 5; j++){
+                comments[j] = `article${Math.ceil((i+1)/2)} comment${i+1}_${j+1}`
+            }
+            return comments;
+        })()
+
+    }
+    return arr;
+})()
+        
